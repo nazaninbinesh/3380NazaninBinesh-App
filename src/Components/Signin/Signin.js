@@ -44,8 +44,7 @@ function Signin() {
         <div className="mt-3">
             <p>
             You don't have an account!  <a href="">Sign up</a> now.
-            </p>
-            
+            </p>            
         </div>      
       </form>
     </main>
