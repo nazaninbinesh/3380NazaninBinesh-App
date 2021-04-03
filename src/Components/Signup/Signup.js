@@ -86,7 +86,7 @@ function Signup() {
         </div>
       </div>
       <div className="form-row">
-        <div className="form-group col-md-4">
+        <div className="form-group col-md-6">
           <label htmlFor="email">Email</label>
           <input
             type="email"
@@ -95,7 +95,7 @@ function Signup() {
             placeholder="Email"
           />
         </div>
-        <div className="form-group col-md-4">
+        <div className="form-group col-md-6">
           <label htmlFor="password">Password</label>
           <input
             type="password"
@@ -103,16 +103,7 @@ function Signup() {
             id="password"
             placeholder="Password"
           />
-        </div>
-        <div className="form-group col-md-4">
-          <label htmlFor="rePassword">Re-enter Password</label>
-          <input
-            type="password"
-            className="form-control"
-            id="rePassword"
-            placeholder="Re-enter Password"
-          />
-        </div>
+        </div>        
       </div>                     
       <button type="" className="btn btn-primary w-100 btn btn-lg">
         Sign Up
