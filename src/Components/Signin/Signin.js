@@ -4,14 +4,14 @@ import {Link} from 'react-router-dom';
 
 function Signin() {
   return (
-    <main class="form-signin mt-5">
+    <main className="form-signin mt-5">
       <form>
         <img
-          className="mb-4"
-          src="public/logo.png"
+          className="mb-2"
+          src="/logo.png"
           alt="Logo"
-          width="72"
-          height="57"
+          width="95"
+          height="auto"
         />
         <h1 className="h3 mb-3 fw-normal">Please sign in</h1>
 
@@ -22,7 +22,7 @@ function Signin() {
             id="floatingInput"
             placeholder="name@example.com"
           />
-          <label for="floatingInput">Email address</label>
+          <label htmlFor="floatingInput">Email address</label>
         </div>
         <div className="form-floating">
           <input
@@ -31,7 +31,7 @@ function Signin() {
             id="floatingPassword"
             placeholder="Password"
           />
-          <label for="floatingPassword">Password</label>
+          <label htmlFor="floatingPassword">Password</label>
         </div>
 
         <div className="checkbox mb-3">
