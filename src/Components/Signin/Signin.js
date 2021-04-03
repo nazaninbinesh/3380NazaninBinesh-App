@@ -1,13 +1,14 @@
 import React from "react";
 import './Signin.scss'
+import {Link} from 'react-router-dom';
 
 function Signin() {
   return (
-    <main class="form-signin">
+    <main class="form-signin mt-5">
       <form>
         <img
           className="mb-4"
-          src="/public/logo.png"
+          src="public/logo.png"
           alt="Logo"
           width="72"
           height="57"
@@ -43,7 +44,7 @@ function Signin() {
         </button>  
         <div className="mt-3">
             <p>
-            You don't have an account!  <a href="">Sign up</a> now.
+            You don't have an account!  <Link to='/signup'>Sign up</Link> now.
             </p>            
         </div>      
       </form>

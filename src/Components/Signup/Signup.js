@@ -3,7 +3,7 @@ import "./Signup.scss";
 
 function Signup() {
   return (
-    <form>
+    <form className="mt-5">
       <div className="form-row">
         <div className="form-group col-md-4">
           <label htmlFor="firstName">First Name</label>
