@@ -1,9 +1,9 @@
 import React from "react";
 import "./Signup.scss";
 
-function Signup() {
+function Signup(props) { 
   return (
-    <form className="mt-5">
+    <div className="mt-5">
       <div className="form-row">
         <div className="form-group col-md-4">
           <label htmlFor="firstName">First Name</label>
@@ -12,6 +12,7 @@ function Signup() {
             className="form-control"
             id="firstName"
             placeholder="First Name"
+            onChange={props.update}
           />
         </div>
         <div className="form-group col-md-4">
@@ -21,6 +22,7 @@ function Signup() {
             className="form-control"
             id="lastName"
             placeholder="Last Name"
+            onChange={props.update}
           />
         </div>
         <div className="form-group col-md-4">
@@ -72,13 +74,13 @@ function Signup() {
       </div>
       <div className="form-row">
         <div className="form-group col-md-10">
-            <label htmlFor="address">Address</label>
-            <input
+          <label htmlFor="address">Address</label>
+          <input
             type="text"
             className="form-control"
             id="address"
             placeholder="1234 Main St"
-            />
+          />
         </div>
         <div className="form-group col-md-2">
           <label for="postalCode">Postal Code</label>
@@ -103,12 +105,12 @@ function Signup() {
             id="password"
             placeholder="Password"
           />
-        </div>        
-      </div>                     
+        </div>
+      </div>
       <button type="" className="btn btn-primary w-100 btn btn-lg">
         Sign Up
       </button>
-    </form>
+    </div>
   );
 }
 
