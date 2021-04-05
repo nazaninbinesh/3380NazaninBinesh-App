@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Signin from "./Components/Signin/Signin";
 import Signup from "./Components/Signup/Signup";
+import Panel from "./Components/Panel/Panel";
 import NotFound from "./Components/NotFound/NotFound";
 import withAuth from "./Services/withAuth";
 import {
@@ -9,6 +10,7 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
+
 import { registerUser } from "./Services/Services";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -72,12 +74,11 @@ function App() {
     })
       .then((res) => res.json())
       .then((user_token) => {
-        let { token } = user_token;
-        localStorage.setItem("token", token);
-        console.log("token",token)
+        let { token } = user_token;       
+        localStorage.setItem("token", token);        
 
         //Redirect the user somehow...
-        return <Redirect to="/" />;
+        return <Redirect to="/panel" />        
       });
   }
 
@@ -95,7 +96,9 @@ function App() {
               path="/signup"
               render={() => <Signup update={updated} register={registered} />}
             />
+            <Route path="/panel" component={withAuth(Panel)} />           
             <Route component={NotFound} />
+            
           </Switch>
         </Router>
         <ToastContainer />

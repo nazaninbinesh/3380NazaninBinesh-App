@@ -9,3 +9,4 @@ export async function registerUser(newUser)  {
     .then (response => response.json())    
     .then(console.log("registered"))
 }
+
