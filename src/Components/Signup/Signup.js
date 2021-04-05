@@ -32,21 +32,22 @@ function Signup(props) {
             className="form-control"
             id="birthDate"
             placeholder="Birth Date"
+            onChange={props.update}
           />
         </div>
       </div>
       <div className="form-row">
         <div className="form-group col-md-4">
           <label htmlFor="country">Country</label>
-          <select id="country" className="form-control">
-            <option selected>Choose...</option>
+          <select id="country" className="form-control" onChange={props.update}>
+            <option defaultValue>Choose...</option>
             <option>Canada</option>
           </select>
         </div>
         <div className="form-group col-md-4">
           <label htmlFor="provinc">Province</label>
-          <select id="provinc" className="form-control">
-            <option selected>Choose...</option>
+          <select id="provinc" className="form-control" onChange={props.update}>
+            <option defaultValue>Choose...</option>
             <option>Alberta</option>
             <option>British Columbia</option>
             <option>Manitoba</option>
@@ -69,6 +70,7 @@ function Signup(props) {
             className="form-control"
             id="city"
             placeholder="City"
+            onChange={props.update}
           />
         </div>
       </div>
@@ -80,11 +82,12 @@ function Signup(props) {
             className="form-control"
             id="address"
             placeholder="1234 Main St"
+            onChange={props.update}
           />
         </div>
         <div className="form-group col-md-2">
-          <label for="postalCode">Postal Code</label>
-          <input type="text" className="form-control" id="postalCode" />
+          <label htmlFor="postalCode">Postal Code</label>
+          <input type="text" className="form-control" id="postalCode" onChange={props.update} />
         </div>
       </div>
       <div className="form-row">
@@ -95,6 +98,7 @@ function Signup(props) {
             className="form-control"
             id="email"
             placeholder="Email"
+            onChange={props.update}
           />
         </div>
         <div className="form-group col-md-6">
@@ -104,10 +108,11 @@ function Signup(props) {
             className="form-control"
             id="password"
             placeholder="Password"
+            onChange={props.update}
           />
         </div>
       </div>
-      <button type="" className="btn btn-primary w-100 btn btn-lg">
+      <button type="button" className="btn btn-primary w-100 btn btn-lg" onClick={props.register}>
         Sign Up
       </button>
     </div>

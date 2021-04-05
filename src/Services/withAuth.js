@@ -10,7 +10,7 @@ export default function withAuth(ComponentInside) {
                 redirect:false
             };
         }
-
+       
         //Call the authorization
         componentDidMount() {
             fetch(`${process.env.REACT_APP_API_URL}` + '/api/authorize', {
