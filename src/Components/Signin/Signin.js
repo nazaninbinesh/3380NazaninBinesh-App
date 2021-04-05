@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import './Signin.scss'
-import {Link} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 
-function Signin() {
+
+function Signin(props) {
   return (
     <main className="form-signin mt-5">
       <form>
@@ -21,6 +22,7 @@ function Signin() {
             className="form-control"
             id="floatingInput"
             placeholder="name@example.com"
+            onChange={props.email}
           />
           <label htmlFor="floatingInput">Email address</label>
         </div>
@@ -30,6 +32,7 @@ function Signin() {
             className="form-control"
             id="floatingPassword"
             placeholder="Password"
+            onChange={props.password}
           />
           <label htmlFor="floatingPassword">Password</label>
         </div>
@@ -39,7 +42,7 @@ function Signin() {
             <input type="checkbox" value="remember-me" /> Remember me
           </label>
         </div>       
-        <button className="w-100 btn btn-lg btn-primary">
+        <button className="w-100 btn btn-lg btn-primary" onClick={props.login}>
           Sign in
         </button>  
         <div className="mt-3">
