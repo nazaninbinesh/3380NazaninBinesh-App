@@ -1,11 +1,10 @@
 import React from "react";
+import PanelHeader from '../PanelHeader/PanelHeader'
 
 function Panel(props) { 
     console.log("props",props)
   return (
-    <h1 className="mt-5">
-     Here is the panel
-    </h1>
+    <PanelHeader />
   );
 }
 
