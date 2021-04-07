@@ -41,7 +41,7 @@ export default function withAuth(ComponentInside) {
                 return null;
             } if (redirect) {
                 return <Redirect to ="/" />
-            }
+            }            
             return <Panel { ...this.props } />
         }
     }

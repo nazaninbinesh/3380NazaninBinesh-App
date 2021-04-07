@@ -17,7 +17,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   //Set hooks for user information
-  const notify = () => {
+  const notify = async () => {
     toast.success("Congrats! You have sucessfully registered.", {
       position: "top-center",
       autoClose: 2000,
@@ -27,18 +27,27 @@ function App() {
       draggable: true,
       progress: undefined,
     });
-
+    
     console.log("notify");
+    await redirectToLogin();
   };
   const redirectToLogin = () => {
-    console.log("redirect");
+    
+    setIsUserAuthenticated(true)
+    if(isUserAuthenticated){
+      console.log("redirect");
+      return <Redirect to ="/" />
+    }
     //history.push('/');
-    //return <Redirect  to="/" />
+    
+    
   };
 
   const [user, setUser] = useState({});
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isUserAuthenticated, setIsUserAuthenticated] = useState(false);
+
   
   //Functions to invoke on change
   function passwordChange(e) {
@@ -58,13 +67,11 @@ function App() {
 
   async function registered(e) {
     await registerUser(user);
-    await notify();
-    await redirectToLogin();
+    await notify();    
   }  
 
   function getToken(e) {
-    e.preventDefault();
-
+    e.preventDefault();    
     console.log({ email: email, password: password });
 
     fetch(`${process.env.REACT_APP_API_BASE_URL}`+"api/login", {
@@ -72,14 +79,15 @@ function App() {
       body: JSON.stringify({ email: email, password: password }),
       headers: { "Content-Type": "application/json" },
     })
-      .then((res) => res.json())
+      .then((res) => res.json())      
       .then((user_token) => {
         let { token } = user_token;       
-        localStorage.setItem("token", token);        
-
-        //Redirect the user somehow...
-        return <Redirect to="/panel" />        
-      });
+        localStorage.setItem("token", token);                         
+       
+        //Redirect the user somehow... 
+        return <Redirect to="/panel" />                             
+                       
+      })      
   }
 
   return (
@@ -96,7 +104,7 @@ function App() {
               path="/signup"
               render={() => <Signup update={updated} register={registered} />}
             />
-            <Route path="/panel" component={withAuth(Panel)} />           
+            <Route path="/panel" component={withAuth(Panel)} />              
             <Route component={NotFound} />
             
           </Switch>
