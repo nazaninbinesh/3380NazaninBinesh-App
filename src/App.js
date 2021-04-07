@@ -103,9 +103,8 @@ function App() {
               path="/signup"
               render={() => <Signup update={updated} register={registered} />}
             />
-            <Route path="/panel" component={withAuth(Panel)} />              
-            <Route component={NotFound} />
-            
+            <Route path="/panel" component={withAuth(Panel)} />                          
+            <Route component={NotFound} />            
           </Switch>
         </Router>
         <ToastContainer />
