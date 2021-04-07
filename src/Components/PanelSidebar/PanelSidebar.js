@@ -1,5 +1,6 @@
 import React from "react";
 import "./panelSidebar.scss";
+import {Link} from 'react-router-dom';
 
 function PanelSidebar(props) {
   return (
@@ -59,10 +60,10 @@ function PanelSidebar(props) {
       
       <ul className="nav nav-pills flex-column mb-auto">   
       <li>
-          <a href="#" className="nav-link text-white">
+          <Link to='/panel/addProduct' className="nav-link text-white">
             <svg className="bi me-2" width="16" height="16"></svg>
             add product
-          </a>
+          </Link>
         </li>             
         <li>
           <a href="#" className="nav-link text-white">

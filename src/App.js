@@ -14,6 +14,7 @@ import {
 import { registerUser } from "./Services/Services";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import AddProduct from "./Components/AddProduct/AddProduct";
 
 function App() {
   //Set hooks for user information
@@ -27,28 +28,21 @@ function App() {
       draggable: true,
       progress: undefined,
     });
-    
+
     console.log("notify");
-    await redirectToLogin();
+    // redirectToLogin();
   };
-  const redirectToLogin = () => {
-    
-    setIsUserAuthenticated(true)
-    if(isUserAuthenticated){
-      console.log("redirect");
-      return <Redirect to ="/" />
-    }
-    //history.push('/');
-    
-    
-  };
+  // useEffect(() => {
+   
+  //   setIsUserAuthenticated(true);  
+  // });
+
 
   const [user, setUser] = useState({});
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isUserAuthenticated, setIsUserAuthenticated] = useState(false);
 
-  
   //Functions to invoke on change
   function passwordChange(e) {
     setPassword(e.target.value);
@@ -67,48 +61,59 @@ function App() {
 
   async function registered(e) {
     await registerUser(user);
-    await notify();    
+    await notify();
+    setIsUserAuthenticated(true);    
   }  
 
   function getToken(e) {
-    e.preventDefault();    
+    e.preventDefault();
     console.log({ email: email, password: password });
 
-    fetch(`${process.env.REACT_APP_API_BASE_URL}`+"api/login", {
+    fetch(`${process.env.REACT_APP_API_BASE_URL}` + "api/login", {
       method: "POST",
       body: JSON.stringify({ email: email, password: password }),
       headers: { "Content-Type": "application/json" },
     })
-      .then((res) => res.json())      
+      .then((res) => res.json())
       .then((user_token) => {
-        let { token } = user_token;       
-        localStorage.setItem("token", token);                         
-       
-        //Redirect the user somehow... 
-        return <Redirect to="/panel" />                             
-                       
-      })      
-  }
+        let { token } = user_token;
+        localStorage.setItem("token", token);
+
+        //Redirect the user somehow...
+        return <Redirect to="/panel" />;
+      });
+  } 
+  
 
   return (
-    <div className="App">      
-        <Router>
-          <Switch>
-            <Route
-              path="/"
-              exact
-              render={() => <Signin email={emailChange} password={passwordChange} login={getToken} />}
-             />
-            <Route
-              path="/signup"
-              render={() => <Signup update={updated} register={registered} />}
-            />
-            <Route path="/panel" component={withAuth(Panel)} />                          
-            <Route component={NotFound} />            
-          </Switch>
-        </Router>
-        <ToastContainer />
-      
+    <div className="App">
+      <Router>
+        {
+          
+          isUserAuthenticated ? <Redirect to="/" /> :             
+        <Switch>
+          <Route
+            path="/"
+            exact
+            render={() => (
+              <Signin
+                email={emailChange}
+                password={passwordChange}
+                login={getToken}
+              />
+            )}
+          />
+          <Route
+            path="/signup"
+            render={() => <Signup update={updated} register={registered} />}
+          />
+          <Route path="/panel" component={withAuth(Panel)} />
+          <Route path="/panel/addProduct" component={withAuth(AddProduct)} />
+          <Route component={NotFound} />
+        </Switch>
+        }
+      </Router>
+      <ToastContainer />
     </div>
   );
 }
