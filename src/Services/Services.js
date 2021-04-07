@@ -10,3 +10,12 @@ export async function registerUser(newUser)  {
     .then(console.log("registered"))
 }
 
+export async function getUserInfo(){
+    //get token from localStorage
+
+    //split token by dot
+
+    //decode token pyload
+
+    //return usename
+}
