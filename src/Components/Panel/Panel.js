@@ -1,10 +1,12 @@
 import React from "react";
-import PanelHeader from '../PanelHeader/PanelHeader'
+import PanelSidebar from "../PanelSidebar/PanelSidebar";
 
-function Panel(props) { 
-    console.log("props",props)
+function Panel(props) {
+  console.log("props", props);
   return (
-    <PanelHeader />
+    <div>     
+      <PanelSidebar />      
+    </div>
   );
 }
 
