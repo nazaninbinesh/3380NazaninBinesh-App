@@ -16,7 +16,7 @@ export default function withAuth(ComponentInside) {
         componentDidMount() {            
             fetch(`${process.env.REACT_APP_API_URL}` + '/api/authorize', {
                 credentials: "include",
-                headers: { 'x-access-token' : localStorage.getItem('token')}
+                headers: { 'x-access-token' : sessionStorage.getItem('token')}
             })
             .then( res => { 
                 if (res.status === 200) {                    

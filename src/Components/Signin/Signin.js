@@ -29,7 +29,7 @@ function Signin(props) {
         .then((res) => res.json())
         .then((user_token) => {
           let { token } = user_token;
-          localStorage.setItem("token", token);
+          sessionStorage.setItem("token", token);
   
           setRedirectToPanel(true)                    
         });
@@ -37,7 +37,7 @@ function Signin(props) {
     //Redirect the user somehow...
     if(redirectToPanel) 
     return <Redirect to="/panel" />;
-    
+
   return (
     <main className="form-signin mt-5">
       <form>

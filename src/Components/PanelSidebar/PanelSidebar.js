@@ -35,7 +35,7 @@ function PanelSidebar(props) {
             height="33"
             className="rounded-circle me-2"
           />
-          <strong>Nazanin Binesh</strong>
+          <strong>{props.userName}</strong>
         </a>
         <ul
           className="dropdown-menu dropdown-menu-dark text-small shadow"
