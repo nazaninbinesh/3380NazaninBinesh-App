@@ -60,14 +60,12 @@ function PanelSidebar(props) {
       
       <ul className="nav nav-pills flex-column mb-auto">   
       <li>
-          <Link to='/panel/addProduct' className="nav-link text-white">
-            <svg className="bi me-2" width="16" height="16"></svg>
+          <Link to='/panel/addProduct' className="nav-link text-white">            
             add product
           </Link>
         </li>             
         <li>
-          <a href="#" className="nav-link text-white">
-            <svg className="bi me-2" width="16" height="16"></svg>
+          <a href="#" className="nav-link text-white">            
             Products
           </a>
         </li>

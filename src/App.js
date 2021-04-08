@@ -103,11 +103,11 @@ function App() {
               />
             )}
           />
-          <Route
+          <Route           
             path="/signup"
             render={() => <Signup update={updated} register={registered} />}
           />
-          <Route path="/panel" component={withAuth(Panel)} />
+          <Route exact path="/panel" component={withAuth(Panel)} />
           <Route path="/panel/addProduct" component={withAuth(AddProduct)} />
           <Route component={NotFound} />
         </Switch>
