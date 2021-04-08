@@ -4,7 +4,8 @@ import Signup from "./Components/Signup/Signup";
 import Panel from "./Components/Panel/Panel";
 import NotFound from "./Components/NotFound/NotFound";
 import withAuth from "./Services/withAuth";
-
+import AddProduct from "./Components/AddProduct/AddProduct";
+import Signout from "./Components/Signout/Signout";
 import {
   BrowserRouter as Router,
   Switch,
@@ -12,7 +13,7 @@ import {
   Redirect,
 } from "react-router-dom";
 
-import AddProduct from "./Components/AddProduct/AddProduct";
+
 
 function App() {
   
@@ -30,13 +31,15 @@ function App() {
 
           <Route
             path="/signup"
+            exact
             render={(props) => (
               <Signup />
             )}
           />
-          <Route path="/panel" component={withAuth(Panel)} />
-          <Route path="/panel/addProduct" component={withAuth(AddProduct)} />
-          <Route component={NotFound} />
+          <Route exact path="/panel" component={withAuth(Panel)} />
+          <Route exact path="/panel/addProduct" component={withAuth(AddProduct)} />
+          <Route exect path="/signout" component={Signout} />
+          <Route exact component={NotFound} />
         </Switch>
       </Router>
     </div>
