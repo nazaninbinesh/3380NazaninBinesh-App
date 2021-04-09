@@ -1,6 +1,7 @@
 import React from "react";
 import "./panelSidebar.scss";
 import {Link} from 'react-router-dom';
+import Signout from '../Signout/Signout';
 
 function PanelSidebar(props) {
   return (
@@ -34,8 +35,8 @@ function PanelSidebar(props) {
             width="32"
             height="33"
             className="rounded-circle me-2"
-          />
-          <strong>Nazanin Binesh</strong>
+          />          
+          <strong>{props.userName}</strong>
         </a>
         <ul
           className="dropdown-menu dropdown-menu-dark text-small shadow"
@@ -50,9 +51,9 @@ function PanelSidebar(props) {
             <hr className="dropdown-divider" />
           </li>
           <li>
-            <a className="dropdown-item" href="#">
+            <Link to='Signout' className="dropdown-item" href="#">
               Sign out
-            </a>
+            </Link>
           </li>
         </ul>
       </div>
@@ -65,9 +66,9 @@ function PanelSidebar(props) {
           </Link>
         </li>             
         <li>
-          <a href="#" className="nav-link text-white">            
+          <Link to='/panel/products' className="nav-link text-white">            
             Products
-          </a>
+          </Link>
         </li>
        
       </ul>

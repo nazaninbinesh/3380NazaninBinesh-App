@@ -1,18 +1,28 @@
-import React from "react";
+import React,{useState} from "react";
 import "./PanelContent.scss";
 import AddProduct from "../AddProduct/AddProduct";
 import Products from "../Products/Products";
+import {registerProduct} from '../../Services/Services'
 
 function PanelContent(props) {
-//   if (props == "AddProduct") {
-//     return <AddProduct />;
-//   }
-//   else if(props == "Products"){
-//   return <Products />;
-// } 
+  const [product, setProduct] = useState({});
+  function updated(e) {
+    setProduct({
+      ...product,
+      [e.target.id]: e.target.value,
+    });
+  }
+
+  async function addProduct(e){
+    console.log("Nazanin")
+    await registerProduct(product);
+  }
+  
+  
+
   return (
     <div className="panelContent">
-      <PanelContent props={AddProduct}   />  
+      {props.componentName == "Products" ? <Products /> :  <AddProduct update={updated} addProduct={addProduct} />}      
     </div>
   );
 }

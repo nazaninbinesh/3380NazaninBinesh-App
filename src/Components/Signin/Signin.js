@@ -4,6 +4,39 @@ import {Link, Redirect} from 'react-router-dom';
 
 
 function Signin(props) {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [redirectToPanel, setRedirectToPanel] = useState(false);
+
+    //Functions to invoke on change
+    function passwordChange(e) {
+      setPassword(e.target.value);
+    }
+  
+    function emailChange(e) {
+      setEmail(e.target.value);
+    }
+
+    function getToken(e) {
+      e.preventDefault();      
+  
+      fetch(`${process.env.REACT_APP_API_BASE_URL}` + "api/login", {
+        method: "POST",
+        body: JSON.stringify({ email: email, password: password }),
+        headers: { "Content-Type": "application/json" },
+      })
+        .then((res) => res.json())
+        .then((user_token) => {
+          let { token } = user_token;
+          sessionStorage.setItem("token", token);
+  
+          setRedirectToPanel(true)                    
+        });
+    }
+    //Redirect the user somehow...
+    if(redirectToPanel) 
+    return <Redirect to="/panel" />;
+
   return (
     <main className="form-signin mt-5">
       <form>
@@ -22,7 +55,7 @@ function Signin(props) {
             className="form-control"
             id="floatingInput"
             placeholder="name@example.com"
-            onChange={props.email}
+            onChange={emailChange}
           />
           <label htmlFor="floatingInput">Email address</label>
         </div>
@@ -32,7 +65,7 @@ function Signin(props) {
             className="form-control"
             id="floatingPassword"
             placeholder="Password"
-            onChange={props.password}
+            onChange={passwordChange}
           />
           <label htmlFor="floatingPassword">Password</label>
         </div>
@@ -42,7 +75,7 @@ function Signin(props) {
             <input type="checkbox" value="remember-me" /> Remember me
           </label>
         </div>       
-        <button className="w-100 btn btn-lg btn-primary" onClick={props.login}>
+        <button className="w-100 btn btn-lg btn-primary" onClick={getToken}>
           Sign in
         </button>  
         <div className="mt-3">
