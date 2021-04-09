@@ -30,16 +30,21 @@ export async function getUserInfo() {
     return JSON.parse(jsonPayload);
  
 }
+export async function getToken(){
+  return sessionStorage.getItem("token");
+}
 
-export async function productsList() {
-  debugger
+export async function productsList() {  
   const productOwner = await getUserInfo().then((json) => {
     return json.id;    
-  });   
+  });  
+  // const availableToken = await getToken().then((json)=>{
+  //   return json;
+  // });
   return fetch(`${process.env.REACT_APP_API_BASE_URL}` + "products", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: productOwner,
+    body: JSON.stringify({productOwner: productOwner }),
   })
     .then((response) => response.json());
 
