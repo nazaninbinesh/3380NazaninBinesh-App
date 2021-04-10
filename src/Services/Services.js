@@ -56,7 +56,9 @@ export async function registerProduct(newProduct){
     return json.id;    
   });  
   
-  var productData = newProduct;   
+  // var imageUrl = file.name;
+  // newProduct.productImage = imageUrl;
+  var productData = newProduct;     
   productData = JSON.stringify({...productData, productOwner})  
   return fetch(`${process.env.REACT_APP_API_BASE_URL}` + "addProduct", {
     method: "POST",

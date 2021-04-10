@@ -1,7 +1,7 @@
 import React,{useState} from "react";
-import "./AddProduct.scss";
+import "./EditProduct.scss";
 
-function AddProduct(props) {  
+function EditProduct(props) {  
   
   return (
     <div className="addProduct">
@@ -85,4 +85,4 @@ function AddProduct(props) {
   );
 }
 
-export default AddProduct;
+export default EditProduct;

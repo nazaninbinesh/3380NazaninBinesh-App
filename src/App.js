@@ -7,6 +7,8 @@ import withAuth from "./Services/withAuth";
 import AddProduct from "./Components/AddProduct/AddProduct";
 import Signout from "./Components/Signout/Signout";
 import Products from './Components/Products/Products';
+import EditProduct from './Components/EditProduct/EditProduct'
+
 
 import {
   BrowserRouter as Router,
@@ -40,6 +42,7 @@ function App() {
           <Route exact path="/panel" component={withAuth(Panel)} />                  
           <Route path="/panel/addProduct" component={withAuth(AddProduct)} />
           <Route path="/panel/products" component={withAuth(Products)} />
+          <Route path="/panel/products/remove/:id" component={withAuth(EditProduct)} />
           <Route exect path="/signout" component={Signout} />
           <Route exact component={NotFound} />
         </Switch>

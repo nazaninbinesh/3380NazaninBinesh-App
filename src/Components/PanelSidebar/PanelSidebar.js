@@ -51,7 +51,7 @@ function PanelSidebar(props) {
             <hr className="dropdown-divider" />
           </li>
           <li>
-            <Link to='Signout' className="dropdown-item" href="#">
+            <Link to='/Signout' className="dropdown-item">
               Sign out
             </Link>
           </li>
