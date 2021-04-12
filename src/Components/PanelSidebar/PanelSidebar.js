@@ -41,15 +41,7 @@ function PanelSidebar(props) {
         <ul
           className="dropdown-menu dropdown-menu-dark text-small shadow"
           aria-labelledby="dropdownUser"
-        >          
-          <li>
-            <a className="dropdown-item" href="#">
-              Profile
-            </a>
-          </li>
-          <li>
-            <hr className="dropdown-divider" />
-          </li>
+        >                            
           <li>
             <Link to='/Signout' className="dropdown-item">
               Sign out
