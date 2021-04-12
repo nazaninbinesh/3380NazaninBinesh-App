@@ -4,11 +4,10 @@ import AddProduct from "../AddProduct/AddProduct";
 import Products from "../Products/Products";
 import {registerProduct} from '../../Services/Services';
 import { ToastContainer, toast } from "react-toastify";
+import EditProduct from "../EditProduct/EditProduct";
 
 function PanelContent(props) {
-  const [product, setProduct] = useState({});
- // const [selectedfile, setselectedfile]=useState([]);
-  //const [fileBase64String, setFileBase64String]=useState("");
+  const [product, setProduct] = useState({});   
   
   function updated(e) { 
     if(e.target.type =="file"){
@@ -40,7 +39,20 @@ function PanelContent(props) {
   async function addProduct(e){    
     encodeFileBase64()      
     await registerProduct(product);
-    await notify();    
+    await notify();  
+    await resetForm();
+  }
+
+  const resetForm = async ()=>{
+    Array.from(document.querySelectorAll("input")).forEach(
+      input => (input.value = "")
+    );
+    Array.from(document.querySelectorAll("textarea")).forEach(
+      textarea => (textarea.value = "")
+    );
+    Array.from(document.querySelectorAll("select")).forEach(
+      select => (select.value = "")
+    );   
   }
 
    //Set hooks for user information
@@ -56,11 +68,13 @@ function PanelContent(props) {
     });
     console.log("notify"); 
   };
-    
-
+     
   return (
+    
     <div className="panelContent">
-      {props.componentName == "Products" ? <Products /> :  <AddProduct update={updated} addProduct={addProduct}  />}      
+       {props.componentName == "Products" ? <Products /> 
+      : props.componentName == "AddProduct" ? <AddProduct update={updated} addProduct={addProduct}  />
+      : <EditProduct update={updated} productInfo={product} />}     
       <ToastContainer />
     </div>
   );

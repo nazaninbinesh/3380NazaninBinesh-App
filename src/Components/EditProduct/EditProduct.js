@@ -2,7 +2,7 @@ import React,{useState} from "react";
 import "./EditProduct.scss";
 
 function EditProduct(props) {  
-  
+  console.log("here",props)
   return (
     <div className="addProduct">
       <div className="container">
@@ -75,9 +75,9 @@ function EditProduct(props) {
           <button
             type="button"
             className="btn btn-primary w-100 btn btn-lg"
-            onClick={props.addProduct}           
+            onClick={props.editProduct}           
           >
-            Add Product
+            Edit Product
           </button>
         </div>       
       </div>

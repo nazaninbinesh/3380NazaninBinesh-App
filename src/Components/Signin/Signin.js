@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import './Signin.scss'
 import {Link, Redirect} from 'react-router-dom';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 
 function Signin(props) {
@@ -8,6 +10,18 @@ function Signin(props) {
   const [password, setPassword] = useState("");
   const [redirectToPanel, setRedirectToPanel] = useState(false);
 
+//notification 
+const emailPassNotify = async () => {
+    toast.error("Username or Password is not correct", {
+      position: "top-center",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });   
+  };
     //Functions to invoke on change
     function passwordChange(e) {
       setPassword(e.target.value);
@@ -26,14 +40,22 @@ function Signin(props) {
         headers: { "Content-Type": "application/json" },
       })
         .then((res) => res.json())
-        .then((user_token) => {
-          let { token } = user_token;
-          sessionStorage.setItem("token", token);
-  
-          setRedirectToPanel(true)                    
-        });
+        .then((user_token) => {         
+          if(user_token.token != null){
+            let { token } = user_token;
+            sessionStorage.setItem("token", token);           
+            setRedirectToPanel(true)  
+          }
+          else{
+            emailPassNotify();
+            return <Redirect to='/' />
+          }
+                           
+        }).catch(function(err) {
+          emailPassNotify();
+      });
     }
-    //Redirect the user somehow...
+    //Redirect the user to panel
     if(redirectToPanel) 
     return <Redirect to="/panel" />;
 
@@ -84,6 +106,7 @@ function Signin(props) {
             </p>            
         </div>      
       </form>
+      <ToastContainer />
     </main>
   );
 }

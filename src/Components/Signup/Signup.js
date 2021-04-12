@@ -8,20 +8,54 @@ import "react-toastify/dist/ReactToastify.css";
 function Signup(props) {
   const [user, setUser] = useState({});
   const [redirectToLogin, setRedirectToLogin] = useState(false);
-
+   
   function updated(e) {
     setUser({
       ...user,
       [e.target.id]: e.target.value,
     });
   }
-
+  const ErrorAgenotify = async () => {
+    toast.error("You are under 18.", {
+      position: "top-center",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    }); 
+  };
+  const ErrorEmailnotify = async () => {
+    toast.error("This Email is Registered before.", {
+      position: "top-center",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    }); 
+  };
+  
   async function registered(e) {
-    await registerUser(user);
-    await notify(); 
-    const timer = setTimeout(() => {
-      setRedirectToLogin(true)
-    }, 3000);
+    await registerUser(user).
+    then((res)=>{
+      if(res.underAge){        
+        ErrorAgenotify();
+      }
+      else if(res.emailExist){
+        ErrorEmailnotify();
+      }
+      else{
+        notify(); 
+        const timer = setTimeout(() => {
+          setRedirectToLogin(true)
+        }, 3000);
+      }
+     
+    })
+   
   }
 
   //Set hooks for user information

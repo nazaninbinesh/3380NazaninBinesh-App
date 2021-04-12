@@ -40,9 +40,11 @@ function App() {
             )}
           />
           <Route exact path="/panel" component={withAuth(Panel)} />                  
-          <Route path="/panel/addProduct" component={withAuth(AddProduct)} />
-          <Route path="/panel/products" component={withAuth(Products)} />
-          <Route path="/panel/products/remove/:id" component={withAuth(EditProduct)} />
+          <Route exact path="/panel/addProduct" component={withAuth(AddProduct)} />
+          <Route exact path="/panel/products" component={withAuth(Products)} />
+          <Route exact path="/panel/products/:id" render={(props) => (
+              <EditProduct />
+            )}/>
           <Route exect path="/signout" component={Signout} />
           <Route exact component={NotFound} />
         </Switch>

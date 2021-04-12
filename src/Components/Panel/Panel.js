@@ -3,6 +3,7 @@ import PanelSidebar from "../PanelSidebar/PanelSidebar";
 import PanelContent from "../PanelContent/PanelContent";
 import "./Panel.scss";
 import { getUserInfo } from "../../Services/Services";
+import { Redirect } from "react-router";
 
 function Panel(props) {  
   const [userName, setUserName] = useState("");
@@ -11,12 +12,15 @@ function Panel(props) {
 
   useEffect(() => {
     getUserName();
-    setUrl(props.location.pathname);    
+    setUrl(props.match.path);    
   }, []);
 
 
   async function getUserName() {
+
     await getUserInfo().then((json) => {
+      
+      if(json === undefined) return ""
       setUserName(json.username);
     });
   }
@@ -33,6 +37,9 @@ function Panel(props) {
         componentName = "Products";
         break;
 
+      case "/panel/products/:id":
+        componentName = "EditProduct";
+        break;
       default:
         componentName = "Products";
 
