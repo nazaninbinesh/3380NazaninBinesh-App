@@ -11,7 +11,7 @@ function Products() {
 
   useEffect(() => {
     loadData();
-  });
+  },[]);
   function loadData() {    
     productsList()
       .then((json) => {
