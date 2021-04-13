@@ -1,8 +1,7 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import "./AddProduct.scss";
 
-function AddProduct(props) {  
-  
+function AddProduct(props) {
   return (
     <div className="addProduct">
       <div className="container">
@@ -19,8 +18,8 @@ function AddProduct(props) {
               />
             </div>
             <div className="form-group col-md-6">
-            <label htmlFor="productImage">Produc Image</label>
-              <div className="custom-file">                
+              <label htmlFor="productImage">Produc Image</label>
+              <div className="custom-file">
                 <input
                   type="file"
                   className="custom-file-input"
@@ -33,8 +32,8 @@ function AddProduct(props) {
                 </label>
               </div>
             </div>
-            </div>
-            <div className="form-row">
+          </div>
+          <div className="form-row">
             <div className="form-group col-md-6">
               <label htmlFor="productDescription">Product Description</label>
               <textarea
@@ -57,29 +56,36 @@ function AddProduct(props) {
             </div>
           </div>
           <div className="form-row">
-          
             <div className="form-group col-md-6">
               <label htmlFor="productPrice">Price</label>
-              <input type="number"  className="form-control"
-                id="productPrice" onChange={props.update} />
+              <input
+                type="number"
+                className="form-control"
+                id="productPrice"
+                onChange={props.update}
+              />
             </div>
             <div className="form-group col-md-6">
               <label htmlFor="productStatus">product Status</label>
-              <select id="productStatus" className="form-control" onChange={props.update}>
+              <select
+                id="productStatus"
+                className="form-control"
+                onChange={props.update}
+              >
                 <option defaultValue>Choose...</option>
                 <option>Available</option>
                 <option>Unavailable</option>
               </select>
             </div>
-          </div>        
+          </div>
           <button
             type="button"
             className="btn btn-primary w-100 btn btn-lg"
-            onClick={props.addProduct}           
+            onClick={props.addProduct}
           >
             Add Product
           </button>
-        </div>       
+        </div>
       </div>
     </div>
   );
