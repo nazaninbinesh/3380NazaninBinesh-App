@@ -1,8 +1,8 @@
-import React,{useState} from "react";
+import React,{useState,useEffect} from "react";
 import "./EditProduct.scss";
 
-function EditProduct(props) {  
-  console.log("here",props)
+
+function EditProduct(props) {
   return (
     <div className="addProduct">
       <div className="container">
@@ -13,6 +13,7 @@ function EditProduct(props) {
               <input
                 type="text"
                 className="form-control"
+                defaultValue ={props.productInfo.productName}
                 id="productName"
                 placeholder="Product Name"
                 onChange={props.update}
@@ -24,7 +25,7 @@ function EditProduct(props) {
                 <input
                   type="file"
                   className="custom-file-input"
-                  id="productImage"
+                  id="productImage"                  
                   onChange={props.update}
                   accept=".jpeg, .png, .jpg"
                 />
@@ -42,6 +43,7 @@ function EditProduct(props) {
                 className="form-control"
                 id="productDescription"
                 placeholder="Product Description"
+                defaultValue ={props.productInfo.productDescription}
                 onChange={props.update}
               ></textarea>
             </div>
@@ -52,6 +54,7 @@ function EditProduct(props) {
                 className="form-control"
                 id="productCondition"
                 placeholder="Product Condition"
+                defaultValue ={props.productInfo.productCondition}
                 onChange={props.update}
               ></textarea>
             </div>
@@ -61,11 +64,12 @@ function EditProduct(props) {
             <div className="form-group col-md-6">
               <label htmlFor="productPrice">Price</label>
               <input type="number"  className="form-control"
-                id="productPrice" onChange={props.update} />
+                id="productPrice" onChange={props.update}
+                defaultValue ={props.productInfo.productPrice} />
             </div>
             <div className="form-group col-md-6">
               <label htmlFor="productStatus">product Status</label>
-              <select id="productStatus" className="form-control" onChange={props.update}>
+              <select id="productStatus" className="form-control" defaultValue ={props.productInfo.productStatus} onChange={props.update}>
                 <option defaultValue>Choose...</option>
                 <option>Available</option>
                 <option>Unavailable</option>
@@ -75,7 +79,7 @@ function EditProduct(props) {
           <button
             type="button"
             className="btn btn-primary w-100 btn btn-lg"
-            onClick={props.editProduct}           
+            onClick={props.updateProduct}           
           >
             Edit Product
           </button>

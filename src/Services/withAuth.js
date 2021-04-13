@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import Panel from "../Components/Panel/Panel";
 
-export default function withAuth(ComponentInside) {
+export default function WithAuth(ComponentInside) {
   return class extends Component {
-    constructor() {
-      super();
+    constructor(props) {
+      super(props);
       this.state = {
         loading: true,
         redirect: false,

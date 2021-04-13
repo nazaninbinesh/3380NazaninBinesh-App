@@ -50,7 +50,7 @@ function Panel(props) {
   return (
     <div className="panel">
       <PanelSidebar userName={userName} />
-      <PanelContent componentName={componentName} />
+      <PanelContent {...props} componentName={componentName} />
     </div>
   );
 }

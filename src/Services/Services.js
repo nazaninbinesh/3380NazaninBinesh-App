@@ -42,9 +42,6 @@ export async function productsList() {
   const productOwner = await getUserInfo().then((json) => {
     return json.id;
   });
-  // const availableToken = await getToken().then((json)=>{
-  //   return json;
-  // });
   return fetch(`${process.env.REACT_APP_API_BASE_URL}` + "products", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -69,17 +66,26 @@ export async function registerProduct(newProduct) {
 }
 
 
-export async function editProduct(newProduct) {
+export async function editCurrentProduct(newProduct) {
   const productOwner = await getUserInfo().then((json) => {
     return json.id;
   });
   var productData = newProduct;
   productData = JSON.stringify({ ...productData, productOwner });
-  return fetch(`${process.env.REACT_APP_API_BASE_URL}` + "/products/edit/"+`${newProduct.id}`, {
+  debugger
+  return fetch(`${process.env.REACT_APP_API_BASE_URL}` + "products/edit/"+`${newProduct._id}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: productData,
   })
     .then((response) => response.json())
     .then(console.log("product Edited!"));
+}
+
+export async function getProductInfo(productId){
+  return fetch(`${process.env.REACT_APP_API_BASE_URL}` + "products/"+`${productId}`, {
+    method: "GET",
+    headers: { "Content-Type": "application/json" },    
+  })
+  .then((response) => response.json())
 }

@@ -7,18 +7,15 @@ import { useHistory } from "react-router-dom"
 
 function Products() {
   const [productList, setProductList] = useState([]);
-  const [query, setQuery] = useState("");
-  const history = useHistory();
+  const [currentProductId,setCurrentProductId] = useState(null);
 
   useEffect(() => {
     loadData();
-  }, []);
-  function loadData() { 
-   console.log("refreshpage")
+  });
+  function loadData() {    
     productsList()
       .then((json) => {
-        setProductList(json);
-        return productList;
+        setProductList(json);        
       })
       .catch((err) => {
         console.error(err);
@@ -26,31 +23,25 @@ function Products() {
   }
 
   function editProduct(e){   
-    return <Redirect to='/panel/products/:id' /> 
-    // const params = new URLSearchParams();
-    // console.log("e",e.target.value)
-    // setQuery(e.target.value)
-    // if (query) {
-    //   params.append("/products/", query)
-    // } else {
-    //   params.delete("id")
-    // }
-    // history.push({search: params.toString()})
-  // }, [query, history])
-   // console.log("e",e)
-    //
-      //console.log("edit",e.target.value)
+    setCurrentProductId(
+      e.target.value
+    )    
+     
   }
   function deleteProduct(e){   
     return fetch(`${process.env.REACT_APP_API_BASE_URL}` + "products/remove/"+`${e.target.value}`, {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },      
     })
-      .then((response) => response.json()) 
-
+      .then((response) => response.json())
+      .then(loadData()) 
+      
 
   }
-
+  
+  if(currentProductId != null){
+       return <Redirect to={`/panel/products/${currentProductId}`}/>
+  }
   return (
     <div className="bd-example">
       <div className="card-deck">
